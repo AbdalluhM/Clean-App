@@ -18,7 +18,10 @@ class CartController extends Controller
     public function index(){
         $user = Auth::user();
         $carts = cart::where('user_id', $user->id)->get();
+        if ($carts->count() > 0) {
         return $this->returnData('carts', CartResource::collection($carts),"done");
+        }
+            return $this->returnError(400,"cart is empty");
 
     }
 

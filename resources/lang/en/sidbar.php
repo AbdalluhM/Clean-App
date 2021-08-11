@@ -15,8 +15,9 @@ return [
 
     'Dashboard' => 'Dashboard',
     'Categories'=>'Categories',
-    'Pages'=>'Pages',
-    'Main-Categories'=>'Main-Categories',
+    'Main-Categories'=>'All-Categories',
+    'services'=>' Services',
+    'myService'=>'All-Services',
     'Sup-Categories'=>'Sup-Categories',
     'products'=>'Products',
     'All-PRODUCTS'=>'All-products',

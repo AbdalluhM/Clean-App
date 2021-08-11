@@ -2,10 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Api\HomePageController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
-use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\RecieveController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SupCategoryController;
 
 /*
@@ -54,6 +56,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('recieve', [RecieveController::class, 'index'])->name('recieve');
 
 });
+
+
+// home page
+Route::get('home/categories', [HomePageController::class, 'categories']);
+Route::get('home/bestservice', [HomePageController::class, 'best_services']);
+Route::get('home/services', [HomePageController::class, 'service']);
+
+
+// firbase
+Route::post('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
+
+
+
 
 
 

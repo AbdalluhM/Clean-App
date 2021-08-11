@@ -10,6 +10,7 @@ class SupCategory extends Model
 {
     use HasFactory;
     protected $table = 'sup_categories';
+    protected $appends=['supcategory_image_path'];
     protected $fillable=['name','category_id','image','desc',];
 
     public function category(){
@@ -22,6 +23,10 @@ class SupCategory extends Model
 
     public function ServiceDetails(){
         return $this->hasMany(RecieveDetails::class);
+    }
+    public function getSupcategoryImagePathAttribute()
+    {
+        return asset('storage/images/services/'.($this->image));
     }
 
 }

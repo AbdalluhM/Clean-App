@@ -19,6 +19,7 @@ class CreateSupCategoriesTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('desc');
+            $table->enum('adv',['1','0']);
             $table->timestamps();
         });
     }

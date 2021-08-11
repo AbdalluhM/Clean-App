@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\PermissionController;
+use App\Http\Controllers\Wep\CategoryController;
+use App\Http\Controllers\Wep\ServiceController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -36,6 +38,30 @@ Route::group(
     function () {
 
         Route::get('/home', [HomeController::class, 'index'])->name('home');
+    }
+);
+
+// route category
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:admin']
+    ],
+    function () {
+
+        Route::resource('categories', CategoryController::class);
+    }
+);
+
+// route category
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:admin']
+    ],
+    function () {
+
+        Route::resource('services', ServiceController::class);
     }
 );
 

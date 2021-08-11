@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Kutia\Larafirebase\Facades\Larafirebase;
 
 class HomeController extends Controller
@@ -19,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin')->except('updateToken');
     }
 
     /**
@@ -35,7 +36,11 @@ class HomeController extends Controller
     }
     public function updateToken(Request $request){
         try{
-            $request->user()->update(['fcm_token'=>$request->token]);
+            $input=$request->validate([
+                'token'=>'required'
+            ]);
+            $user=Auth::user();
+            $user->update(['fcm_token'=>$request->token]);
             return response()->json([
                 'success'=>true
             ]);
