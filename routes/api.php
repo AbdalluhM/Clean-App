@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\RecieveController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\SupCategoryController;
 
 /*
@@ -65,7 +66,21 @@ Route::get('home/services', [HomePageController::class, 'service']);
 
 
 // firbase
-Route::post('/fcm-token', [HomeController::class, 'updateToken'])->name('fcmToken');
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::post('/fcm-token', [NotificationController::class, 'updateToken'])->name('fcmToken');
+
+});
+
+
+// notification
+
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/notify', [NotificationController::class, 'index'])->name('notification');
+
+});
 
 
 

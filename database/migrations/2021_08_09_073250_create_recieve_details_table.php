@@ -18,6 +18,7 @@ class CreateRecieveDetailsTable extends Migration
             $table->integer('recieve_id');
             $table->integer('sup_category_id');
             $table->integer('num_workers');
+            // $table->enum('material_clean',['1','0']);
             $table->timestamps();
         });
     }

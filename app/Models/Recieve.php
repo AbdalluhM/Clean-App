@@ -14,6 +14,9 @@ class Recieve extends Model
     {
         return $this->belongsTo(admin::class);
     }
+    public function customer(){
+        return $this->belongsTo(User::class);
+    }
     public function details()
     {
         return $this->hasMany(RecieveDetails::class,'recieve_id');

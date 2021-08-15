@@ -17,6 +17,7 @@ class CreateRecievesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('employee_id');
+            // $table->string('title');
             $table->string('address');
             $table->string('time_start');
             $table->string('desc');

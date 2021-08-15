@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\PermissionController;
 use App\Http\Controllers\Wep\CategoryController;
+use App\Http\Controllers\Wep\RecieveController;
 use App\Http\Controllers\Wep\ServiceController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -53,7 +54,22 @@ Route::group(
     }
 );
 
-// route category
+// route recieves
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:admin']
+    ],
+    function () {
+
+        Route::get('recieves', [RecieveController::class, ('index')])->name('recieves.index');
+        Route::get('recieves/{id}/details', [RecieveController::class, ('details')])->name('recieves.details');
+    }
+);
+
+
+
+// route Services
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),

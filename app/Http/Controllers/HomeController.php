@@ -40,7 +40,7 @@ class HomeController extends Controller
                 'token'=>'required'
             ]);
             $user=Auth::user();
-            $user->update(['fcm_token'=>$request->token]);
+            $user->update(['fcm_token'=>$input]);
             return response()->json([
                 'success'=>true
             ]);

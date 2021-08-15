@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RecieveRequest;
 use App\Http\Resources\RecieveResource;
+use App\Notifications\DbStoreNotification;
 use App\Notifications\SendPushNotification;
 use Illuminate\Support\Facades\Notification;
 
@@ -45,13 +46,14 @@ class RecieveController extends Controller
                 ]);
             }
             DB::table('carts')->delete();
-            return $this->returnSuccessMessage('recieve create successfully', 200);
             $title="recieved is complete";
             $message="our employee will arrive in 50 min";
             $fcmTokens=auth()->user()->fcm_token;
-            $user=Auth::user();
             Notification::send( $user,new SendPushNotification($title,$message,$fcmTokens));
-            // auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
+            return $this->returnSuccessMessage('recieve create successfully', 200);
+
+
+            // auth()->user()->notify(new DbStoreNotification($title,$message));
         }
         return $this->returnError(400, "cart must be full");
     }
