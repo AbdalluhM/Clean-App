@@ -16,7 +16,8 @@ class CreateSupCategoriesTable extends Migration
         Schema::create('sup_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
-            $table->string('name');
+            $table->string('name_ar')->unique();
+            $table->string('name_en')->unique();
             $table->string('image');
             $table->string('desc');
             $table->enum('adv',['1','0']);

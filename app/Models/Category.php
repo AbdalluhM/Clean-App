@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     protected $appends=['category_image_path'];
-    protected $fillable=['name','image','desc',];
+    protected $fillable=['name_ar','name_en','image','desc',];
 
     public function sup_category(){
         return $this->hasMany(SupCategory::class);

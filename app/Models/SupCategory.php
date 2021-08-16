@@ -11,7 +11,7 @@ class SupCategory extends Model
     use HasFactory;
     protected $table = 'sup_categories';
     protected $appends=['supcategory_image_path'];
-    protected $fillable=['name','category_id','image','desc',];
+    protected $fillable=['name_ar','name_en','category_id','image','desc',];
 
     public function category(){
         return $this->belongsTo(Category::class);

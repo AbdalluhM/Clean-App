@@ -49,7 +49,8 @@ Home | Create-Service
                                 data-bs-original-title="Change avatar">
                                 <i class="bi bi-pencil-fill fs-7"></i>
                                 <!--begin::Inputs-->
-                                <input type="file" name="image" accept=".png, .jpg, .jpeg" class="@error('image') is-invalid @enderror">
+                                <input type="file" name="image" accept=".png, .jpg, .jpeg"
+                                    class="@error('image') is-invalid @enderror">
                                 @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -85,52 +86,58 @@ Home | Create-Service
                     <!--begin::Input group-->
                     <div class="row mb-6">
                         <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Service</label>
+                        <label class="col-lg-12 col-form-label required fw-bold fs-6">Service</label>
                         <!--end::Label-->
                         <!--begin::Col-->
-                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                            <input type="text" name="name"
-                                class="form-control form-control-lg form-control-solid @error('name') is-invalid @enderror" placeholder="service name">
-                                @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                        <!--begin::Col-->
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            <input type="text" name="name_ar"
+                                class="form-control form-control-lg form-control-solid @error('name_ar') is-invalid @enderror"
+                                placeholder="Service name arabic">
+                            @error('name_ar')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            <input type="text" name="name_en"
+                                class="form-control form-control-lg form-control-solid @error('name_en') is-invalid @enderror"
+                                placeholder="Service name english">
+                            @error('name_en')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Col-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
+                    @if (isset($categories))
                     <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label fw-bold fs-6">
-                            Description
-                        </label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                            <input type="tel" name="desc" class="form-control form-control-lg form-control-solid"
-                                placeholder="Description ">
-                                @error('desc')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Col-->
+                        <select name="category_id" aria-label="Select a Main service" data-control="select2"
+                            data-placeholder="Select a Main Category"
+                            class="form-select form-select-solid form-select-lg select2-hidden-accessible"
+                            data-select2-id="select2-data-13-i3r9" tabindex="-1" aria-hidden="true">
+                            <option value="" data-select2-id="select2-data-15-ojrf">Select a Main Category</option>
+                            @foreach ($categories as $category )
+                            <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}">{{$category->name}}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
-                   @if (isset($categories))
-                   <div class="row mb-6">
-                    <select name="category_id" aria-label="Select a Main service" data-control="select2"
-                        data-placeholder="Select a Main service"
-                        class="form-select form-select-solid form-select-lg select2-hidden-accessible"
-                        data-select2-id="select2-data-13-i3r9" tabindex="-1" aria-hidden="true">
-                        <option value="" data-select2-id="select2-data-15-ojrf">Select a Main Category</option>
-                        @foreach ($categories as $category )
-                        <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}">{{$category->name}}</option>
-                        @endforeach
-                    </select>
                     <!--end::Input-->
-                </div>
-                   @endif
+                    {{-- begin desc --}}
+                    <div class="row mb-6">
+                        <div class="d-flex flex-column mb-12">
+                            <label class="fs-6 fw-bold mb-2">Service Details</label>
+                            <textarea class="form-control form-control-solid" rows="3" name="desc"
+                                placeholder="Type Category Details"></textarea>
+                            @error('desc')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    @endif
                     <!--end::Input group-->
                 </div>
                 <!--end::Card body-->

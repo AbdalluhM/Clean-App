@@ -80,7 +80,7 @@ Home | all-categories
                                         {{-- <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Ana Simmons</a>
                                         <span class="text-muted fw-bold text-muted d-block fs-7">HTML, JS, ReactJS</span> --}}
                                         <span
-                                            class="text-dark fw-bolder text-hover-primary fs-6">{{$category->name}}</span>
+                                            class="text-dark fw-bolder text-hover-primary fs-6">{{(app()->getLocale() == 'en')?$category->name_en:$category->name_ar}}</span>
                                     </div>
                                 </div>
                             </td>
