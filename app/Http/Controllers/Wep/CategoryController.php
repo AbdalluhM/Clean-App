@@ -50,7 +50,8 @@ class CategoryController extends Controller
     {
 
         $input= $request->validate([
-            'name' => 'required',
+            'name_ar' => 'required',
+            'name_en' => 'required',
             'desc' => 'required',
             'image'=>'mimes:png,jpg,jepg'
         ]);

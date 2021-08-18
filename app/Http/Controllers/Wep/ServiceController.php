@@ -55,7 +55,8 @@ class ServiceController extends Controller
         // dd($service);
 
         $input= $request->validate([
-            'name' => 'required',
+            'name_ar' => 'required',
+            'name_en' => 'required',
             'desc' => 'required',
             'image'=>'mimes:png,jpg',
             'category_id'=>'required',

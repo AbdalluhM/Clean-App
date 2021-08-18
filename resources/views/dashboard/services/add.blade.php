@@ -127,6 +127,7 @@ Home | Create-Service
                         </select>
                     </div>
                     <!--end::Input-->
+                    @endif
                     {{-- begin desc --}}
                     <div class="row mb-6">
                         <div class="d-flex flex-column mb-12">
@@ -138,7 +139,6 @@ Home | Create-Service
                             @enderror
                         </div>
                     </div>
-                    @endif
                     <!--end::Input group-->
                 </div>
                 <!--end::Card body-->

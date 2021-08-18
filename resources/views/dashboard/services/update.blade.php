@@ -82,42 +82,35 @@
                 <!--end::Input group-->
                 <!--begin::Input group-->
                 <div class="row mb-6">
-                    <!--begin::Input group-->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label required fw-bold fs-6">service</label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                            <input type="text" name="name" value="{{$service->name}}"
-                                class="form-control form-control-lg form-control-solid @error('name') is-invalid @enderror"
-                                placeholder="service name">
-                            @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Col-->
+                   <!--begin::Input group-->
+                   <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-12 col-form-label required fw-bold fs-6">Service Name</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <!--begin::Col-->
+                    <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                        <input type="text" name="name_ar" value="{{$service->name_ar}}"
+                            class="form-control form-control-lg form-control-solid @error('name_ar') is-invalid @enderror"
+                            placeholder="اسم الخدمة باللغة العربية">
+                        @error('name_ar')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="row mb-6">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 col-form-label fw-bold fs-6">
-                            Description
-                        </label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                            <input type="tel" name="desc" class="form-control form-control-lg form-control-solid"
-                                placeholder="Description " value="{{$service->desc}}">
-                            @error('desc')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Col-->
+                    <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                        <input type="text" name="name_en" value="{{$service->name_en}}"
+                            class="form-control form-control-lg form-control-solid @error('name_en') is-invalid @enderror"
+                            placeholder="Service name english">
+                        @error('name_en')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+
                     <div class="row mb-6">
                         <select name="category_id" aria-label="Select a Main service" data-control="select2"
                         data-placeholder="Select a Main service"
@@ -125,9 +118,9 @@
                         data-select2-id="select2-data-13-i3r9" tabindex="-1" aria-hidden="true">
                         @if (isset($categories))
                             @foreach ($categories as $category )
-                            <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}" @if ($category->id===$categorySelect->od)
+                            <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}" @if ($category->id===$categorySelect->id)
                              selected
-                            @endif>{{$category->name}}
+                            @endif> {{(app()->getLocale() == 'en')?$category->name_en:$category->name_ar}}
                             </option>
                             @endforeach
                         </select>
@@ -135,6 +128,17 @@
                     </div>
                     @endif
                     <!--end::Input group-->
+                       {{-- begin desc --}}
+                       <div class="row mb-6">
+                        <div class="d-flex flex-column mb-12">
+                            <label class="fs-6 fw-bold mb-2">Service Details</label>
+                            <textarea class="form-control form-control-solid" rows="3" name="desc"
+                                placeholder="Type Category Details">{{$service->desc}}</textarea>
+                            @error('desc')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <!--end::Card body-->
                 <!--begin::Actions-->

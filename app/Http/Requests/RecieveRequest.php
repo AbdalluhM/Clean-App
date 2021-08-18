@@ -38,7 +38,7 @@ class RecieveRequest extends FormRequest
 
         throw new HttpResponseException(response()->json([
             'status' => 'false',
-            'errnum' => 422,
+            'errNum' => 422,
             'errors' => $validator->errors(),
         ], 422));
     }

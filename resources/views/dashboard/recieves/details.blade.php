@@ -35,9 +35,6 @@ Home | Recieve-Details
                             <th class="min-w-150px">Address Recieve</th>
                             <th class="min-w-120px">Service</th>
                             <th class="min-w-120px">Number Workers</th>
-                            {{-- <th class="min-w-120px">Discount</th>
-                            <th class="min-w-120px">Delivery</th>
-                            <th class="min-w-120px">New Price</th> --}}
                         </tr>
                     </thead>
                     <!--end::Table head-->
@@ -56,7 +53,9 @@ Home | Recieve-Details
                             </td>
                             <td>
                                 <p class="text-dark fw-bolder text-hover-primary d-block fs-6">
-                                    {{$deatails->sup_category->name}}</p>
+                                    {{-- {{$deatails->sup_category->name}} --}}
+                                    {{(app()->getLocale() == 'en')?$deatails->sup_category->name_en:$deatails->sup_category->name_ar}}
+                                </p>
                             </td>
                             <td>
                                 <p class="text-dark fw-bolder text-hover-primary d-block fs-6">

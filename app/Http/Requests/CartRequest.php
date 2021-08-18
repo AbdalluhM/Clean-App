@@ -29,7 +29,7 @@ class CartRequest extends FormRequest
             'sup_category_id'=>'required|exists:sup_categories,id',
             'desc'=>'required|string',
             'num_workers'=>'required|integer',
-            'clean_resources'=>'required|in:yes,no ',
+            'clean_resources'=>'required|in:yes,no',
         ];
     }
     protected function failedValidation(Validator $validator)
@@ -37,7 +37,7 @@ class CartRequest extends FormRequest
 
         throw new HttpResponseException(response()->json([
             'status' => 'false',
-            'errnum' => 422,
+            'errNum' => 422,
             'errors' => $validator->errors(),
         ], 422));
     }
