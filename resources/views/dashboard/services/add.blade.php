@@ -111,6 +111,7 @@ Home | Create-Service
                         <!--end::Col-->
                     </div>
                     <!--end::Input group-->
+
                     <!--begin::Input group-->
                     @if (isset($categories))
                     <div class="row mb-6">
@@ -140,6 +141,24 @@ Home | Create-Service
                         </div>
                     </div>
                     <!--end::Input group-->
+                    <div class="col-md-6 fv-row">
+                        <div class="d-flex flex-stack mb-8">
+                            <!--begin::Label-->
+                            <div class="me-5">
+                                <label class="fs-6 fw-bold">Make This Product Recomended</label>
+                                <div class="fs-7 fw-bold text-gray-400">this product will show in home page as recomend
+                                </div>
+                            </div>
+                            <!--end::Label-->
+                            <!--begin::Switch-->
+                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                <input type="hidden" name="recomend" value="0" />
+                                <input class="form-check-input" type="checkbox" value="1" checked="checked" name="recomend">
+                                <span class="form-check-label fw-bold text-gray-400">Recomend</span>
+                            </label>
+                            <!--end::Switch-->
+                        </div>
+                    </div>
                 </div>
                 <!--end::Card body-->
                 <!--begin::Actions-->
