@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\PermissionController;
 use App\Http\Controllers\Wep\CategoryController;
+use App\Http\Controllers\Wep\CustomerController;
 use App\Http\Controllers\Wep\RecieveController;
 use App\Http\Controllers\Wep\ServiceController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -67,7 +68,18 @@ Route::group(
     }
 );
 
+// route customers
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:admin']
+    ],
+    function () {
 
+        Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
+        Route::get('/customers/{customer}/details', [CustomerController::class, 'index'])->name('customers.details');
+    }
+);
 
 // route Services
 Route::group(
@@ -101,7 +113,6 @@ Auth::routes([
 ]);
 Route::get('login/admin', [LoginController::class, ('showLoginForm')])->name('login');
 Route::post('login/admin', [LoginController::class, ('loginAdmin')])->name('login.admin');
-
 
 // roles...permission...admin
 Route::group(

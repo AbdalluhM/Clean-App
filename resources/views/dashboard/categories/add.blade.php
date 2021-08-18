@@ -86,13 +86,13 @@ Home | Create-category
                     <!--begin::Input group-->
                     <div class="row mb-6">
                         <!--begin::Label-->
-                        <label class="col-lg-12 col-form-label required fw-bold fs-6">Category</label>
+                        <label class="col-lg-12 col-form-label required fw-bold fs-6">Category Name</label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-6 fv-row fv-plugins-icon-container">
                             <input type="text" name="name_ar"
                                 class="form-control form-control-lg form-control-solid @error('name_ar') is-invalid @enderror"
-                                placeholder="Category name arabic">
+                                placeholder="اسم الصنف باللغة العربية">
                             @error('name_ar')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

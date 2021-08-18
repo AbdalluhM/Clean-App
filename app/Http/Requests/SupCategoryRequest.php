@@ -25,7 +25,8 @@ class SupCategoryRequest extends FormRequest
     {
         return [
             'category_id'=>'required|integer',
-            'name'=>'required|string',
+            'name_ar'=>'required|string',
+            'name_en'=>'required|string',
             'image'=>'required|mimes:png,jpg,jpeg',
             'desc'=>'required|string'
         ];
