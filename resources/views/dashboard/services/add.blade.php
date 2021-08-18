@@ -120,7 +120,8 @@ Home | Create-Service
                             data-select2-id="select2-data-13-i3r9" tabindex="-1" aria-hidden="true">
                             <option value="" data-select2-id="select2-data-15-ojrf">Select a Main Category</option>
                             @foreach ($categories as $category )
-                            <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}">{{$category->name}}
+                            <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}">
+                                {{(app()->getLocale() == 'en')?$category->name_en:$category->name_ar}}
                             </option>
                             @endforeach
                         </select>
