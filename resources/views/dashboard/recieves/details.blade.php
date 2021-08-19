@@ -32,6 +32,7 @@ Home | Recieve-Details
                                         data-kt-check-target=".widget-9-check" />
                                 </div>
                             </th>
+                            <th class="min-w-120px">User Name</th>
                             <th class="min-w-150px">Address Recieve</th>
                             <th class="min-w-120px">Service</th>
                             <th class="min-w-120px">Number Workers</th>
@@ -46,6 +47,10 @@ Home | Recieve-Details
                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
                                     <input class="form-check-input widget-9-check" type="checkbox" value="1" />
                                 </div>
+                            </td>
+                            <td>
+                                <p class="text-dark fw-bolder text-hover-primary d-block fs-6">
+                                    {{$deatails->recieve->customer->first()->name}}</p>
                             </td>
                             <td>
                                 <p class="text-dark fw-bolder text-hover-primary d-block fs-6">

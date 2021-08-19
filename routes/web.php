@@ -77,7 +77,8 @@ Route::group(
     function () {
 
         Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
-        Route::get('/customers/{customer}/details', [CustomerController::class, 'index'])->name('customers.details');
+        Route::get('/customers/{id}/details', [CustomerController::class, 'customer_details'])->name('customers.details');
+        // Route::get('/customers/{id}/details/', [CustomerController::class, 'customer_details'])->name('customers.details');
     }
 );
 

@@ -23,7 +23,7 @@ Home | Customer-Details
                             <div class="d-flex flex-center flex-column mb-5">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-100px symbol-circle mb-7">
-                                    <img src="{{$customer->user_image_path}}" alt="image">
+                                    <img src="{{asset('assets/media/avatars/profile.jpg')}}" alt="image">
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Name-->
@@ -36,7 +36,7 @@ Home | Customer-Details
                                     <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
                                         <div class="fs-4 fw-bolder text-gray-700">
                                             <span
-                                                class="w-75px">{{($customer->orders->count()>0)?$customer->orders->count():0}}</span>
+                                                class="w-75px">{{($customer->recieves->count()>0)?$customer->recieves->count():0}}</span>
                                             <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-up.svg-->
                                             <span class="svg-icon svg-icon-3 svg-icon-success">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ Home | Customer-Details
                                             </span>
                                             <!--end::Svg Icon-->
                                         </div>
-                                        <div class="fw-bold text-muted">Orders</div>
+                                        <div class="fw-bold text-muted">Recieves</div>
                                     </div>
                                 </div>
                                 <!--end::Info-->
@@ -104,14 +104,14 @@ Home | Customer-Details
                                     </div>
                                     <!--begin::Details item-->
                                     <!--begin::Details item-->
-                                    <div class="fw-bolder mt-5"> Address</div>
+                                    {{-- <div class="fw-bolder mt-5"> Address</div>
                                     @isset ($customer->address)
                                     <div class="text-gray-600">{{$address->street}},
                                         <br>{{$address->city->city}}
                                         <br>{{$address->state->state}}</div>
                                     @else
                                     <div class="text-gray-600">NOT YET</div>
-                                    @endisset
+                                    @endisset --}}
                                     <!--begin::Details item-->
                                     <!--begin::Details item-->
                                 </div>
@@ -405,7 +405,7 @@ Home | Customer-Details
                                 <div class="card-header border-0">
                                     <!--begin::Card title-->
                                     <div class="card-title">
-                                        <h2>Orders</h2>
+                                        <h2>recieves</h2>
                                     </div>
                                     <!--end::Card title-->
                                 </div>
@@ -428,23 +428,23 @@ Home | Customer-Details
                                                         <thead
                                                             class="border-bottom border-gray-200 fs-7 text-uppercase fw-bolder">
                                                             <tr class="text-start text-muted gs-0" role="row">
-                                                                <th class="min-w-50px">Order Id</th>
-                                                                <th class="min-w-120px">Amount</th>
-                                                                <th class="min-w-120px text-end">Status</th>
+                                                                <th class="min-w-50px">Recieve num</th>
+                                                                <th class="min-w-120px">Address</th>
+                                                                <th class="min-w-120px text-end">time start</th>
                                                             </tr>
                                                         </thead>
                                                         <!--end::Thead-->
                                                         <!--begin::Tbody-->
                                                         <tbody class="fs-6 fw-bold text-gray-600">
-                                                            @foreach ($orders as $order)
+                                                            @foreach ($recieves as $recieve)
                                                             <tr class="odd">
                                                                 <td data-order="Invalid date">
                                                                     <a href="#"
-                                                                        class="text-gray-600 text-hover-primary">{{$order->id}}</a>
+                                                                        class="text-gray-600 text-hover-primary">{{$recieve->id}}</a>
                                                                 </td>
-                                                                <td class="text-success">{{$order->total_price}}</td>
+                                                                <td class="text-success">{{$recieve->address}}</td>
                                                                 <td class="text-end">
-                                                                   {{$order->status}}
+                                                                   {{$recieve->time_start}}
                                                                 </td>
                                                             </tr>
                                                             @endforeach
