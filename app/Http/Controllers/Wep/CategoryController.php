@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Wep;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -36,7 +37,8 @@ class CategoryController extends Controller
         $image = time() . '_' . $request->file('image')->hashName();
         $request->file('image')->storeAs('public/images/categories/', $image);
         Category::create(array_merge($request->all(), ['image' => $image]));
-        session()->flash('success', 'category created successfully');
+        Toastr::success('Category added successfully :)','Success');
+        // session()->flash('success', 'category created successfully');
         return redirect()->back();
     }
     public function edit(Category $category)
@@ -64,8 +66,7 @@ class CategoryController extends Controller
         }
 
         $category->update($input);
-        session()->flash('success', 'Category Updated Successfully');
-
+        Toastr::success('Category Updated successfully ','Success');
         return redirect()->route('categories.index');
     }
 
@@ -75,7 +76,7 @@ class CategoryController extends Controller
         // $sup = Category::where('parent_id', $category->id);
         // $sup->delete();
         $category->delete();
-        session()->flash('success', 'Category Deleted Successfully');
+        Toastr::success('Category Deleted successfully','Success');
         return redirect(route('categories.index'));
     }
 

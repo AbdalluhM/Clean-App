@@ -38,16 +38,12 @@ class HomeController extends Controller
         $services=SupCategory::all();
         $customers=User::all();
         $newcustomers=User::where( 'created_at', '>', Carbon::now()->subDays(10))->get();
-        // $popular=SupCategory::orderBy('order_count','DESC')->paginate(4);
-        // $newArrival=SupCategory::orderBy('sell_date','DESC')->paginate(4);
         return view('dashboard.dashboard')->with([
             'newServices'=>$newService,
             'recieves'=>$recieves,
             'services'=>$services,
             'customers'=>$customers,
             'newcustomers'=>$newcustomers,
-            // 'popular'=>$popular,
-            // 'newArrival'=>$newArrival,
         ]);
     }
     public function updateToken(Request $request){

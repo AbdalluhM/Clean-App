@@ -3,6 +3,9 @@
 @section('title')
 Services
 @endsection
+@section('title_page')
+services
+@endsection
 @section('defintion')
 Home | All-Services
 @endsection

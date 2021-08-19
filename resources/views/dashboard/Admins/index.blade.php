@@ -3,6 +3,9 @@
 @section('title')
 Users
 @endsection
+@section('title_page')
+users
+@endsection
 @section('defintion')
 Home | all - users
 @endsection

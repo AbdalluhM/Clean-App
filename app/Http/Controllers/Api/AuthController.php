@@ -56,6 +56,7 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
             'phone' => 'required|string|unique:users',
             'image' => 'image',
+            'fcm_token'=>'required'
         ]);
 
         if ($validator->fails()) {

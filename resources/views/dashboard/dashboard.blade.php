@@ -3,6 +3,9 @@
 @section('title')
 Dashobord
 @endsection
+@section('title_page')
+Dashobord
+@endsection
 @section('defintion')
 #rx-dashbord
 @endsection

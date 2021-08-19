@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RoleRequest;
+use Brian2694\Toastr\Facades\Toastr;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 
@@ -63,7 +64,7 @@ class RoleController extends Controller
 
         $role = Role::create(['name' => $request->input('name'),'guard_name'=>'admin']);
         $role->syncPermissions($request->input('permission'));
-        session()->flash('success','Role created successfully');
+        Toastr::success('Role added successfully :)','Success');
         return redirect()->route('roles.index');
 
     }
@@ -121,7 +122,7 @@ class RoleController extends Controller
         $role->save();
 
         $role->syncPermissions($request->input('permission'));
-        session()->flash('success','Role Updated successfully');
+        Toastr::success('Role Updated successfully :)','Success');
         return redirect()->route('roles.index');
 
     }
@@ -134,7 +135,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
-        session()->flash('success','Role Deleted successfully');
+        Toastr::success('Role Deleted successfully :)','Success');
         return redirect()->route('roles.index');
 
     }

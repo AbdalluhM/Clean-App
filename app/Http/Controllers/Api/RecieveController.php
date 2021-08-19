@@ -50,6 +50,7 @@ class RecieveController extends Controller
             $message="our employee will arrive in 50 min";
             $fcmTokens=auth()->user()->fcm_token;
             Notification::send( $user,new SendPushNotification($title,$message,$fcmTokens));
+            $this->send($fcmTokens,$title,$message);
             return $this->returnSuccessMessage('recieve create successfully', 200);
 
 

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Wep;
 
+use App\Models\Category;
 use App\Models\SupCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SupCategoryRequest;
-use App\Models\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\SupCategoryRequest;
 
 class ServiceController extends Controller
 {
@@ -36,7 +37,7 @@ class ServiceController extends Controller
         $image = time() . '_' . $request->file('image')->hashName();
         $request->file('image')->storeAs('public/images/services/', $image);
         SupCategory::create(array_merge($request->all(), ['image' => $image]));
-        session()->flash('success', 'SupCategory created successfully');
+        Toastr::success('Service added successfully :)','Success');
         return redirect()->back();
     }
     public function edit(SupCategory $service)
@@ -70,8 +71,7 @@ class ServiceController extends Controller
         }
 
         $service->update($input);
-        session()->flash('success', 'service Updated Successfully');
-
+        Toastr::success('Service Updated successfully :)','Success');
         return redirect()->route('services.index');
     }
 
@@ -79,7 +79,7 @@ class ServiceController extends Controller
     {
         Storage::disk('public')->delete('/images/services/' . $SupCategory->image);
         $SupCategory->delete();
-        session()->flash('success', 'SupCategory Deleted Successfully');
+        Toastr::success('Service Deleted successfully :)','Success');
         return redirect(route('services.index'));
     }
 

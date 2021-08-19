@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\AdminRequest;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -57,7 +58,7 @@ class AdminController extends Controller
         $input['password'] = Hash::make($input['password']);
         $Admin = Admin::create($input);
         $Admin->assignRole($request->input('roles'));
-        session()->flash('success', 'User created successfully');
+        Toastr::success('User added successfully :)','Success');
         return redirect()->route('users.index');
     }
 
@@ -118,7 +119,7 @@ class AdminController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $Admin->assignRole($request->input('roles'));
-        session()->flash('success', 'User Updated successfully');
+        Toastr::success('User Updated successfully :)','Success');
         return redirect()->route('profile.index');
     }
 
@@ -134,7 +135,7 @@ class AdminController extends Controller
             Storage::disk('public')->delete('/images/admins/' . Admin::find($id)->image);
         }
         Admin::find($id)->delete();
-        session()->flash('success', 'User Deleted successfully');
+        Toastr::success('User Deleted successfully :)','Success');
         return redirect()->route('users.index');
     }
     public function profile_user(){

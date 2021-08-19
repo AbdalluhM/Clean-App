@@ -67,7 +67,9 @@ Route::get('home/services', [HomePageController::class, 'service']);
 
 // firbase
 Route::middleware('auth:sanctum')->group(function () {
+    //..Other routes
 
+// Route::post('send-notification', [App\Http\Controllers\NotificationController::class, 'send']);
     Route::post('/fcm-token', [NotificationController::class, 'updateToken'])->name('fcmToken');
 
 });
