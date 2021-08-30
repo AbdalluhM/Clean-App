@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 // use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -51,12 +52,15 @@ class LoginController extends Controller
     public function loginAdmin(Request $request)
     {
         $validatedData = $request->validate([
-            'email' => ['required','exists:admins,email'],
+            'email' => ['required', 'exists:admins,email'],
             'password' => ['required', 'string', 'min:5'],
         ]);
-
-        Auth::guard('admin')->attempt($validatedData);
-
-        return redirect('/home');
+        if ($validatedData) {
+            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                return redirect('/home');
+            };
+            toastr()->error('password is not correct please try again later.');
+            return back();
+        };
     }
 }

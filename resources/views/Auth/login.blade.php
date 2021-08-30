@@ -10,12 +10,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
 		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="{{asset('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 	</head>
 
 	<!--end::Head-->
@@ -38,7 +39,7 @@
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Ecomerce Dashboard</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Admin Dashboard</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
 							<p class="fw-bold fs-2" style="color: #986923;">Discover Amazing Dashboard
@@ -163,6 +164,9 @@
 		<!--begin::Page Custom Javascript(used by this page)-->
 		<script src="assets/js/custom/authentication/sign-in/general.js"></script>
 		<!--end::Page Custom Javascript-->
+        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
 		<!--end::Javascript-->
 	</body>
 	<!--end::Body-->

@@ -184,7 +184,7 @@
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">User Management</span>
+										<span class="menu-title">{{__('sidbar.user-mangement')}}</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion">
@@ -193,7 +193,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Users</span>
+												<span class="menu-title">{{__('sidbar.users')}}</span>
 												<span class="menu-arrow"></span>
 											</span>
 											<div class="menu-sub menu-sub-accordion">
