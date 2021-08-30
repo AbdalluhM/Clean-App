@@ -18,7 +18,7 @@ class HomePageController extends Controller
 
     public function best_services(){
         $services=SupCategory::whereNotNull('adv')->paginate(4);
-        return $this->returnData('best service',$services,"done");
+        return $this->returnData('bestservice',$services,"done");
     }
 
     public function service(){
