@@ -17,7 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->integer('sup_category_id');
             $table->integer('user_id');
-            $table->string('desc');
+            // $table->string('desc');
             $table->integer('num_workers');
             $table->enum('clean_resources',['yes','no']);
             $table->timestamps();

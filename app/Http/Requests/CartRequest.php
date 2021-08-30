@@ -27,7 +27,7 @@ class CartRequest extends FormRequest
     {
         return [
             'sup_category_id'=>'required|exists:sup_categories,id',
-            'desc'=>'required|string',
+            // 'desc'=>'required|string',
             'num_workers'=>'required|integer',
             'clean_resources'=>'required|in:yes,no',
         ];
