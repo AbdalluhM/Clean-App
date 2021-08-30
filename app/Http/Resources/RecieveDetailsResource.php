@@ -15,8 +15,8 @@ class RecieveDetailsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'service name'=>$this->sup_category->name,
-            'number employee'=>$this->num_workers,
+            'servicename'=>$this->sup_category->name,
+            'numberemployee'=>$this->num_workers,
         ];
     }
 }

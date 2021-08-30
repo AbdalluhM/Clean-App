@@ -16,9 +16,9 @@ class SupCategoryResource extends JsonResource
     {
         return [
 
-            "service name arabic" => $this->name_ar,
-            "service name english" => $this->name_en,
-            "service image " => $this->supcategory_image_path,
+            "servicenamearabic" => $this->name_ar,
+            "servicenameenglish" => $this->name_en,
+            "serviceimage " => $this->supcategory_image_path,
             "description" => $this->desc,
 
         ];
