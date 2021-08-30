@@ -21,25 +21,27 @@ class AuthController extends Controller
     {
         // dd("sssssssss");
         $req = Validator::make($request->all(), [
-            'email' => 'required',
+            'phone' => 'required',
             'password' => 'required|string|min:5',
         ]);
         if ($req->fails()) {
             return $this->returnError(422, $req->errors());
         }
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             $authUser = Auth::user();
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
             $success['name'] =  $authUser->name;
 
             return $this->returnData("access_token", $success, 'User Signed in');
-        } elseif (Auth::attempt(['phone' => $request->email, 'password' => $request->password])) {
-            $authUser = Auth::user();
-            $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
-            $success['name'] =  $authUser->name;
+        }
+        // elseif (Auth::attempt(['phone' => $request->email, 'password' => $request->password])) {
+        //     $authUser = Auth::user();
+        //     $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
+        //     $success['name'] =  $authUser->name;
 
-            return $this->returnData("access_token", $success, 'User Signed in');
-        } else {
+        //     return $this->returnData("access_token", $success, 'User Signed in');
+        // }
+        else {
             // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
             return $this->returnError(400, ['error' => 'Unauthorised']);
         }
