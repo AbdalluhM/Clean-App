@@ -18,6 +18,7 @@ class CartResource extends JsonResource
             "nameServiceAr"=>$this->sup_category->name_ar,
             "nameServiceEn"=>$this->sup_category->name_en,
             "image"=>$this->sup_category->image,
+            "numrWorkers"=>$this->num_workers,
         ];
     }
 }
