@@ -33,7 +33,7 @@ class RecieveController extends Controller
         if ($carts->count() > 0) {
             $recieve = Recieve::create([
                 'user_id' => $user->id,
-                'employee_id' => $request->employee_id,
+                // 'employee_id' => $request->employee_id,
                 'address' => $request->address,
                 'time_start' => $request->time_start,
                 'desc' => $request->desc,

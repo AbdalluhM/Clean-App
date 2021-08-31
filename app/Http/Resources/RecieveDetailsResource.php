@@ -16,7 +16,7 @@ class RecieveDetailsResource extends JsonResource
     {
         return [
             'serviceName'=>$this->sup_category->name,
-            'numberemployee'=>$this->num_workers,
+            'numberEmployee'=>$this->num_workers,
         ];
     }
 }

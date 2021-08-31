@@ -18,7 +18,7 @@ class RecieveResource extends JsonResource
             'id'=>$this->id,
             'address'=>$this->address,
             'nameEmployee'=>$this->user->name,
-            'Details'=> $this-> details(),
+            'details'=> $this-> details(),
         ];
     }
     public function details(){

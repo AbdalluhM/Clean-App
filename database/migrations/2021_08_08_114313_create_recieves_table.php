@@ -16,7 +16,7 @@ class CreateRecievesTable extends Migration
         Schema::create('recieves', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('employee_id');
+            $table->integer('employee_id')->nullable();
             // $table->string('title');
             $table->string('address');
             $table->string('time_start');

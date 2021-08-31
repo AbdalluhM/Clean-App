@@ -26,7 +26,7 @@ class RecieveRequest extends FormRequest
     public function rules()
     {
         return [
-            'employee_id'=>'required|integer|',
+            // 'employee_id'=>'required|integer|',
             'address'=>'required|string',
             'time_start'=>'required|string',
             'desc'=>'required|string',
