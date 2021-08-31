@@ -23,6 +23,7 @@ class RecieveController extends Controller
     {
         $user = Auth::user();
         $recieves = Recieve::where('user_id', $user->id)->get();
+        dd($recieves);
         // dd($recieveDetail);
         return $this->returnData('recieves',RecieveResource::collection($recieves), "done");
     }

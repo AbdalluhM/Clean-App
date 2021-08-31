@@ -17,7 +17,7 @@ class RecieveResource extends JsonResource
         return [
             'id'=>$this->id,
             'address'=>$this->address,
-            'nameEmployee'=>$this->user->name,
+            // 'nameEmployee'=>$this->user->name,
             'details'=> $this-> details(),
         ];
     }
