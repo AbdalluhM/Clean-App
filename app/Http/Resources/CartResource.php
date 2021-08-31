@@ -15,7 +15,8 @@ class CartResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "nameService"=>$this->sup_category->name,
+            "nameServiceAr"=>$this->sup_category->name_ar,
+            "nameServiceEn"=>$this->sup_category->name_en,
             "image"=>$this->sup_category->image,
         ];
     }
