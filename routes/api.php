@@ -40,7 +40,7 @@ Route::get('category', [CategoryController::class, 'index']);
 
 // sup category
 Route::get('supcategory', [SupCategoryController::class, 'index']);
-
+Route::get('supcategory/details', [SupCategoryController::class, 'sup_category']);
 
 // cart
 Route::middleware('auth:sanctum')->group(function () {

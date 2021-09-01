@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use App\Models\Category;
 use App\Models\SupCategory;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomePageController extends Controller
 {
     use GeneralTrait ;
+    public function slider(){
+        $slider=Slider::all('slider_image_path');
+        return $slider ;
+    }
     public function categories(){
         $categories=Category::paginate(4);
         return $this->returnData('categories',$categories,"done");
