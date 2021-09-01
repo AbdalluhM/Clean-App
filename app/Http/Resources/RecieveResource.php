@@ -27,7 +27,7 @@ class RecieveResource extends JsonResource
     }
 
     public function employee_details(){
-        if ($this->employee) {
+        if (!empty($this->employee_id)) {
             $employee=[];
             $employee['name']=$this->employee->name;
             if ($this->employee->admin_image_path) {
