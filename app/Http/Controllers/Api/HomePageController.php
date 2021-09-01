@@ -8,13 +8,14 @@ use App\Models\SupCategory;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SliderResource;
 
 class HomePageController extends Controller
 {
     use GeneralTrait ;
     public function slider(){
         $slider=Slider::all();
-        return $this->returnData('sliders',$slider,"done");
+        return $this->returnData('sliders',SliderResource::collection($slider),"done");
     }
     public function categories(){
         $categories=Category::paginate(4);
