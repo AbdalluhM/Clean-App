@@ -42,6 +42,10 @@ Route::get('category', [CategoryController::class, 'index']);
 Route::get('supcategory', [SupCategoryController::class, 'index']);
 Route::get('supcategory/details', [SupCategoryController::class, 'sup_category']);
 
+
+// slider
+Route::get('slider', [HomePageController::class, 'slider']);
+
 // cart
 Route::middleware('auth:sanctum')->group(function () {
 

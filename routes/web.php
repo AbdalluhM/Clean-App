@@ -11,6 +11,7 @@ use App\Http\Controllers\Wep\CategoryController;
 use App\Http\Controllers\Wep\CustomerController;
 use App\Http\Controllers\Wep\RecieveController;
 use App\Http\Controllers\Wep\ServiceController;
+use App\Http\Controllers\Wep\SliderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -55,6 +56,18 @@ Route::group(
     }
 );
 
+
+// route slider
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth:admin']
+    ],
+    function () {
+Route::resource('sliders', SliderController::class);
+
+    });
 // route recieves
 Route::group(
     [

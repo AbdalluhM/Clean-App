@@ -13,8 +13,8 @@ class HomePageController extends Controller
 {
     use GeneralTrait ;
     public function slider(){
-        $slider=Slider::all('slider_image_path');
-        return $slider ;
+        $slider=Slider::all();
+        return $this->returnData('sliders',$slider,"done");
     }
     public function categories(){
         $categories=Category::paginate(4);
