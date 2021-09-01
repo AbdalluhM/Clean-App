@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
@@ -48,14 +49,17 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
+        $input = $request->validate([
+            'description' => 'string',
+            'image' => 'required|mimes:png,jpg'
+        ]);
         if (request()->hasFile('image')) {
-        $image = time() . '_' . $request->file('image')->hashName();
-        $request->file('image')->storeAs('public/images/sliders/', $image);
-        $input['image']=$image;
+            $image = time() . '_' . $request->file('image')->hashName();
+            $request->file('image')->storeAs('public/images/sliders/', $image);
+            $input['image'] = $image;
         }
         Slider::create($input);
-        session()->flash('success','Slider Created Successfully');
+        Toastr::success('Slider added successfully :)', 'Success');
         return redirect()->back();
     }
 
@@ -78,7 +82,7 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        return view('sliders.update')->with([
+        return view('dashboard.sliders.edit')->with([
             'slider' => $slider,
             // 'categories' => Category::whereNull('parent_id')->get(),
         ]);
@@ -93,15 +97,18 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        $input=$request->all();
+        $input = $request->validate([
+            'description' => 'string',
+            'image' => 'mimes:png,jpg,jepg'
+        ]);
         if (request()->hasFile('image')) {
-            Storage::disk('public')->delete('/images/sliders/'.$slider->image);
+            Storage::disk('public')->delete('/images/sliders/' . $slider->image);
             $image = time() . '_' . $request->file('image')->hashName();
             $request->file('image')->storeAs('public/images/sliders/', $image);
-            $input['image']=$image;
+            $input['image'] = $image;
         }
         $slider->update($input);
-        session()->flash('success','Slider Updated Successfully');
+        Toastr::success('Slider Updated successfully :)', 'Success');
         return redirect()->route('sliders.index');
     }
 
@@ -113,9 +120,9 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        Storage::disk('public')->delete('/images/sliders/'.$slider->image);
+        Storage::disk('public')->delete('/images/sliders/' . $slider->image);
         $slider->delete();
-        session()->flash('success','Slider Deleted Successfully');
+        Toastr::success('Slider Deleted successfully :)', 'Success');
         return redirect()->back();
     }
 }

@@ -26,7 +26,7 @@ class AdminController extends Controller
     {
         $data = Admin::orderBy('id', 'DESC')->paginate(4);
         return view('dashboard.Admins.index', compact('data'));
-            // ->with('i', ($request->input('page', 1) - 1) * 5);
+        // ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -58,7 +58,7 @@ class AdminController extends Controller
         $input['password'] = Hash::make($input['password']);
         $Admin = Admin::create($input);
         $Admin->assignRole($request->input('roles'));
-        Toastr::success('User added successfully :)','Success');
+        Toastr::success('User added successfully :)', 'Success');
         return redirect()->route('users.index');
     }
 
@@ -119,7 +119,7 @@ class AdminController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $Admin->assignRole($request->input('roles'));
-        Toastr::success('User Updated successfully :)','Success');
+        Toastr::success('User Updated successfully :)', 'Success');
         return redirect()->route('profile.index');
     }
 
@@ -135,10 +135,11 @@ class AdminController extends Controller
             Storage::disk('public')->delete('/images/admins/' . Admin::find($id)->image);
         }
         Admin::find($id)->delete();
-        Toastr::success('User Deleted successfully :)','Success');
+        Toastr::success('User Deleted successfully :)', 'Success');
         return redirect()->route('users.index');
     }
-    public function profile_user(){
+    public function profile_user()
+    {
         return view('dashboard.Admins.profile');
     }
 }

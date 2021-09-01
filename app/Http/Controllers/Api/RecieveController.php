@@ -25,7 +25,7 @@ class RecieveController extends Controller
         $recieves = Recieve::where('user_id', $user->id)->get();
         // dd($recieves);
         // dd($recieveDetail);
-        return $this->returnData('recieves',RecieveResource::collection($recieves), "done");
+        return $this->returnData('recieves', RecieveResource::collection($recieves), "done");
     }
     public function store(RecieveRequest $request)
     {
@@ -47,11 +47,11 @@ class RecieveController extends Controller
                 ]);
             }
             DB::table('carts')->delete();
-            $title="recieved is complete";
-            $message="our employee will arrive in 50 min";
-            $fcmTokens=auth()->user()->fcm_token;
-            Notification::send( $user,new SendPushNotification($title,$message,$fcmTokens));
-            $this->send($fcmTokens,$title,$message);
+            $title = "recieved is complete";
+            $message = "our employee will arrive in 50 min";
+            $fcmTokens = auth()->user()->fcm_token;
+            Notification::send($user, new SendPushNotification($title, $message, $fcmTokens));
+            $this->send($fcmTokens, $title, $message);
             return $this->returnSuccessMessage('recieve create successfully', 200);
 
 

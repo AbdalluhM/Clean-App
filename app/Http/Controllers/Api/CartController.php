@@ -15,20 +15,21 @@ use Illuminate\Support\Facades\Validator;
 class CartController extends Controller
 {
     use GeneralTrait;
-    public function index(){
+    public function index()
+    {
         $user = Auth::user();
         $carts = cart::where('user_id', $user->id)->get();
         if ($carts->count() > 0) {
-        return $this->returnData('carts', CartResource::collection($carts),"done");
+            return $this->returnData('carts', CartResource::collection($carts), "done");
         }
-            return $this->returnError(400,"cart is empty");
-
+        return $this->returnError(400, "cart is empty");
     }
 
 
-    public function store(CartRequest $request){
-        $user=Auth::user();
+    public function store(CartRequest $request)
+    {
+        $user = Auth::user();
         cart::create(array_merge($request->all(), ['user_id' => $user->id]));
-        return $this->returnSuccessMessage("cart fill success ",200);
+        return $this->returnSuccessMessage("cart fill success ", 200);
     }
 }

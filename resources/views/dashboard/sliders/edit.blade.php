@@ -80,26 +80,6 @@
                 <br>
                 <br>
                 <div class="row mb-6">
-                    <!--begin::Input group-->
-                    <div class="row mb-6">
-                        <select name="category_id" aria-label="Select a Main Category" data-control="select2"
-                            data-placeholder="Select category"
-                            class="form-select form-select-solid form-select-lg select2-hidden-accessible @error('image') is-invalid @enderror"
-                            data-select2-id="select2-data-13-i3r9" tabindex="-1" aria-hidden="true">
-                            <option value="{{$slider->category->id}}" data-select2-id="select2-data-15-ojrf">{{$slider->category->category_name}}</option>
-                            @foreach ($categories as $category )
-                            <option data-kt-flag="flags/indonesia.svg" value="{{$category->id}}">
-                                {{$category->category_name}}</option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <br>
-                        <br>
-                        <!--end::Input-->
-                    </div>
-                    <!--end::Input group-->
                     {{-- begin desc --}}
                     <div class="row mb-6">
                         <div class="d-flex flex-column mb-12">

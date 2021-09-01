@@ -37,7 +37,7 @@ class CategoryController extends Controller
         $image = time() . '_' . $request->file('image')->hashName();
         $request->file('image')->storeAs('public/images/categories/', $image);
         Category::create(array_merge($request->all(), ['image' => $image]));
-        Toastr::success('Category added successfully :)','Success');
+        Toastr::success('Category added successfully :)', 'Success');
         // session()->flash('success', 'category created successfully');
         return redirect()->back();
     }
@@ -51,22 +51,22 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
 
-        $input= $request->validate([
+        $input = $request->validate([
             'name_ar' => 'required',
             'name_en' => 'required',
             'desc' => 'required',
-            'image'=>'mimes:png,jpg,jepg'
+            'image' => 'mimes:png,jpg,jepg'
         ]);
         if (request()->hasFile('image')) {
 
             Storage::disk('public')->delete('/images/categories/' . $category->image);
             $image = time() . '_' . $request->file('image')->hashName();
             $request->file('image')->storeAs('public/images/categories/', $image);
-            $input['image']=$image;
+            $input['image'] = $image;
         }
 
         $category->update($input);
-        Toastr::success('Category Updated successfully ','Success');
+        Toastr::success('Category Updated successfully ', 'Success');
         return redirect()->route('categories.index');
     }
 
@@ -76,15 +76,15 @@ class CategoryController extends Controller
         // $sup = Category::where('parent_id', $category->id);
         // $sup->delete();
         $category->delete();
-        Toastr::success('Category Deleted successfully','Success');
+        Toastr::success('Category Deleted successfully', 'Success');
         return redirect(route('categories.index'));
     }
 
 
     public function search(Request $request)
     {
-        $category_name=trim($request->searchName);
-        $category = Category::where('category_name','like',"%{$category_name}%")->paginate(5);
+        $category_name = trim($request->searchName);
+        $category = Category::where('category_name', 'like', "%{$category_name}%")->paginate(5);
         return view('dashboard.categories.index')->with('categories', $category);
     }
 }

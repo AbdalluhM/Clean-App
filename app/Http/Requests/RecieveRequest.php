@@ -8,7 +8,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RecieveRequest extends FormRequest
 {
-     /**
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -27,10 +27,10 @@ class RecieveRequest extends FormRequest
     {
         return [
             // 'employee_id'=>'required|integer|',
-            'address'=>'required|string',
-            'time_start'=>'required|string',
+            'address' => 'required|string',
+            'time_start' => 'required|string',
             // 'desc'=>'required|string',
-          ];
+        ];
     }
 
     protected function failedValidation(Validator $validator)

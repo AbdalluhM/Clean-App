@@ -28,7 +28,7 @@ class ServiceController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('dashboard.services.add')->with('categories',$categories);
+        return view('dashboard.services.add')->with('categories', $categories);
     }
 
 
@@ -37,16 +37,16 @@ class ServiceController extends Controller
         $image = time() . '_' . $request->file('image')->hashName();
         $request->file('image')->storeAs('public/images/services/', $image);
         SupCategory::create(array_merge($request->all(), ['image' => $image]));
-        Toastr::success('Service added successfully :)','Success');
+        Toastr::success('Service added successfully :)', 'Success');
         return redirect()->back();
     }
     public function edit(SupCategory $service)
     {
         // dd($service->supcategory_image_path);
-        $categories=Category::all();
-        $category=$service->category;
+        $categories = Category::all();
+        $category = $service->category;
         // dd($category);
-        return view('dashboard.services.update')->with(['service' => $service,'categories'=>$categories,'categorySelect'=>$category]);
+        return view('dashboard.services.update')->with(['service' => $service, 'categories' => $categories, 'categorySelect' => $category]);
     }
 
 
@@ -55,23 +55,23 @@ class ServiceController extends Controller
     {
         // dd($service);
 
-        $input= $request->validate([
+        $input = $request->validate([
             'name_ar' => 'required',
             'name_en' => 'required',
             'desc' => 'required',
-            'image'=>'mimes:png,jpg',
-            'category_id'=>'required',
+            'image' => 'mimes:png,jpg',
+            'category_id' => 'required',
         ]);
         if (request()->hasFile('image')) {
 
             Storage::disk('public')->delete('/images/services/' . $service->image);
             $image = time() . '_' . $request->file('image')->hashName();
             $request->file('image')->storeAs('public/images/services/', $image);
-            $input['image']=$image;
+            $input['image'] = $image;
         }
 
         $service->update($input);
-        Toastr::success('Service Updated successfully :)','Success');
+        Toastr::success('Service Updated successfully :)', 'Success');
         return redirect()->route('services.index');
     }
 
@@ -79,15 +79,15 @@ class ServiceController extends Controller
     {
         Storage::disk('public')->delete('/images/services/' . $SupCategory->image);
         $SupCategory->delete();
-        Toastr::success('Service Deleted successfully :)','Success');
+        Toastr::success('Service Deleted successfully :)', 'Success');
         return redirect(route('services.index'));
     }
 
 
     public function search(Request $request)
     {
-        $SupCategory_name=trim($request->searchName);
-        $SupCategory = SupCategory::where('SupCategory_name','like',"%{$SupCategory_name}%")->paginate(5);
+        $SupCategory_name = trim($request->searchName);
+        $SupCategory = SupCategory::where('SupCategory_name', 'like', "%{$SupCategory_name}%")->paginate(5);
         return view('dashboard.services.index')->with('services', $SupCategory);
     }
 }

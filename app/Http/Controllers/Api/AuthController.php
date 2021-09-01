@@ -58,7 +58,7 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
             'phone' => 'required|string|unique:users',
             'image' => 'image',
-            'fcm_token'=>'required'
+            'fcm_token' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -71,8 +71,8 @@ class AuthController extends Controller
             $request->file('image')->storeAs('public/images/users/', $image);
             $input['image'] = $image;
         }
-            $input['password'] = bcrypt($input['password']);
-            $user = User::create($input);
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
 
         $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
         $success['name'] =  $user->name;

@@ -21,11 +21,11 @@ class NotificationController extends Controller
         //     var_dump($note->data['title']);
         // }
     }
-    public function send($device_token,$title,$message)
+    public function send($device_token, $title, $message)
     {
         return $this->sendNotification($device_token, array(
-          "title" => $title,
-          "body" => $message,
+            "title" => $title,
+            "body" => $message,
         ));
     }
 

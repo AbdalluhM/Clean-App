@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Wep;
 
-use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Recieve;
-use App\Models\RecieveDetails;
 use Illuminate\Http\Request;
+use App\Models\RecieveDetails;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RecieveController extends Controller
 {
@@ -32,6 +33,7 @@ class RecieveController extends Controller
         $recieve->update([
             'employee_id'=>$request->employee_id
         ]);
+        Toastr::success('Employee Updated successfully :)','Success');
         return view('dashboard.recieves.index');
     }
 }

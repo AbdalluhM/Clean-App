@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    public function send(){
-       
+    public function send()
+    {
     }
 }

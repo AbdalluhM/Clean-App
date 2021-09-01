@@ -15,10 +15,10 @@ class CartResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "nameServiceAr"=>$this->sup_category->name_ar,
-            "nameServiceEn"=>$this->sup_category->name_en,
-            "image"=>$this->sup_category->supcategory_image_path,
-            "numrWorkers"=>$this->num_workers,
+            "nameServiceAr" => $this->sup_category->name_ar,
+            "nameServiceEn" => $this->sup_category->name_en,
+            "image" => $this->sup_category->supcategory_image_path,
+            "numrWorkers" => $this->num_workers,
         ];
     }
 }

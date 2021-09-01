@@ -26,7 +26,7 @@ class SocialRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name' => 'required',
             'email' => 'required|string',
             'type_social' => 'required|string',
             'social_id' => 'required|integer',

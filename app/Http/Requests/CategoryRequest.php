@@ -24,10 +24,10 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ar'=>'required|string',
-            'name_en'=>'required|string',
-            'image'=>'required|mimes:png,jpg,jpeg',
-            'desc'=>'required|string'
+            'name_ar' => 'required|string',
+            'name_en' => 'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'desc' => 'required|string'
         ];
     }
 }

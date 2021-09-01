@@ -18,15 +18,17 @@ class CustomerController extends Controller
     //     $this->middleware('permission:customer-edit', ['only' => ['edit', 'update']]);
     //     $this->middleware('permission:customer-delete', ['only' => ['destroy']]);
     // }
-    public function index(){
-        $users=User::paginate(4);
-        return view('dashboard.cusstomers.index')->with('users',$users);
+    public function index()
+    {
+        $users = User::paginate(4);
+        return view('dashboard.cusstomers.index')->with('users', $users);
     }
 
-    public function customer_details($id){
-      $customer=User::find($id);
-    //   $address=address::where('user_id',$customer->id)->first();
-      $recieves=Recieve::where('user_id',$customer->id)->paginate(5);
-      return view('dashboard.cusstomers.details')->with('customer',$customer)->with('recieves',$recieves);
+    public function customer_details($id)
+    {
+        $customer = User::find($id);
+        //   $address=address::where('user_id',$customer->id)->first();
+        $recieves = Recieve::where('user_id', $customer->id)->paginate(5);
+        return view('dashboard.cusstomers.details')->with('customer', $customer)->with('recieves', $recieves);
     }
 }

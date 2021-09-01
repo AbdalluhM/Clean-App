@@ -26,10 +26,10 @@ class CartRequest extends FormRequest
     public function rules()
     {
         return [
-            'sup_category_id'=>'required|exists:sup_categories,id',
+            'sup_category_id' => 'required|exists:sup_categories,id',
             // 'desc'=>'required|string',
-            'num_workers'=>'required|integer',
-            'clean_resources'=>'required|in:yes,no',
+            'num_workers' => 'required|integer',
+            'clean_resources' => 'required|in:yes,no',
         ];
     }
     protected function failedValidation(Validator $validator)

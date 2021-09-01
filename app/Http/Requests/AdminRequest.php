@@ -26,7 +26,7 @@ class AdminRequest extends FormRequest
         return [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
-            'phone'=>'required|string|between:2,100',
+            'phone' => 'required|string|between:2,100',
             'password' => 'required|same:confirm-password|min:6',
             'roles' => 'required'
         ];

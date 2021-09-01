@@ -16,10 +16,10 @@ class CategoryResource extends JsonResource
     {
         return [
 
-            "categoryNameArabic"=>$this->name_ar,
-            "categoryNameEnglish"=>$this->name_en,
-            "categoryImage "=>$this->category_image_path,
-            "description" =>$this->desc,
+            "categoryNameArabic" => $this->name_ar,
+            "categoryNameEnglish" => $this->name_en,
+            "categoryImage " => $this->category_image_path,
+            "description" => $this->desc,
 
         ];
     }

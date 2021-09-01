@@ -15,25 +15,27 @@ class RecieveResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'address'=>$this->address,
-            'Employee'=>$this->employee_details(),
-            'details'=> $this-> details(),
+            'id' => $this->id,
+            'address' => $this->address,
+            'Employee' => $this->employee_details(),
+            'details' => $this->details(),
         ];
     }
-    public function details(){
-        $details=RecieveDetailsResource::collection($this->details);
-        return $details ;
+    public function details()
+    {
+        $details = RecieveDetailsResource::collection($this->details);
+        return $details;
     }
 
-    public function employee_details(){
+    public function employee_details()
+    {
         if (!empty($this->employee_id)) {
-            $employee=[];
-            $employee['name']=$this->employee->name;
+            $employee = [];
+            $employee['name'] = $this->employee->name;
             if ($this->employee->admin_image_path) {
-                $employee['image']=$this->employee->admin_image_path;
+                $employee['image'] = $this->employee->admin_image_path;
             }
-            return $employee ;
+            return $employee;
         }
 
         return "no employee yet";

@@ -24,11 +24,11 @@ class SupCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id'=>'required|integer',
-            'name_ar'=>'required|string',
-            'name_en'=>'required|string',
-            'image'=>'required|mimes:png,jpg,jpeg',
-            'desc'=>'required|string'
+            'category_id' => 'required|integer',
+            'name_ar' => 'required|string',
+            'name_en' => 'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'desc' => 'required|string'
         ];
     }
 }
