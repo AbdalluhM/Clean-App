@@ -13,7 +13,7 @@ class Recieve extends Model
     protected $fillable=['user_id','employee_id','address','time_start'];
     public function employee()
     {
-        return $this->belongsTo(admin::class);
+        return $this->belongsTo(Admin::class);
     }
     public function customer(){
         return $this->belongsTo(User::class,'user_id');
