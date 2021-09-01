@@ -24,7 +24,7 @@ class SupCategoryController extends Controller
         }
         $SupCategories =SupCategory::where('category_id',$request->category_id)->get();
         // dd($SupCategories);
-          if (!empty($SupCategories)) {
+          if ($SupCategories->count()>0) {
               # code...
               return $this->returnData('SupCategories',SupCategoryResource::collection($SupCategories),"");
           }
