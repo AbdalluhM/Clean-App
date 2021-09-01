@@ -65,6 +65,8 @@ Route::group(
 
         Route::get('recieves', [RecieveController::class, ('index')])->name('recieves.index');
         Route::get('recieves/{id}/details', [RecieveController::class, ('details')])->name('recieves.details');
+        Route::get('recieves/{id}/emp', [RecieveController::class, ('add_emp')])->name('recieves.emp');
+        Route::post('recieves/{id}/emp/store', [RecieveController::class, ('store_emp')])->name('recieves.emp.store');
     }
 );
 

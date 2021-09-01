@@ -55,7 +55,11 @@
                             @foreach ($recieves as $recieve)
                             <tr class="odd">
                                 <td data-recieve="Invalid date">
-                                    {{$recieve->user->name}}
+                                   @if (!empty($recieve->employee_id))
+                                   {{$recieve->employee->name}}
+                                   @else
+                                   no employee yet
+                                   @endif
                                 </td>
                                 <td>{{$recieve->address}}</td>
                                 <td>{{$recieve->time_start}}</td>
@@ -63,6 +67,10 @@
                                 <td class="text-end">
                                     <a href="{{route('recieves.details',$recieve->id)}}"
                                         class="btn btn-sm btn-light btn-active-light-primary">view</a>
+                                        @if (empty($recieve->employee_id))
+                                        <a href="{{route('recieves.emp',$recieve->id)}}"
+                                            class="btn btn-sm btn-light btn-active-light-primary">add Employee</a>
+                                        @endif
                                 </td>
                             </tr>
                             @endforeach

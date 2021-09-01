@@ -29,7 +29,7 @@ class RecieveRequest extends FormRequest
             // 'employee_id'=>'required|integer|',
             'address'=>'required|string',
             'time_start'=>'required|string',
-            'desc'=>'required|string',
+            // 'desc'=>'required|string',
           ];
     }
 
