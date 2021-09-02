@@ -24,6 +24,7 @@ class RecieveController extends Controller
     public function add_emp($id){
         $recieve=Recieve::find($id);
         $users=Admin::whereNull('is_admin')->get();
+        // dd($users);
         return view('dashboard.recieves.addEmployee',compact('users','recieve'));
     }
 
@@ -31,8 +32,12 @@ class RecieveController extends Controller
         $recieve=Recieve::find($id);
         // dd($recieve);
         $recieve->update([
-            'employee_id'=>$request->employee_id
+            'employee_id'=>$request->employee_id,
+            'status'=>$request->status,
         ]);
+        $user=Admin::where('id',$request->employee_id)->first();
+        $user->worked+=1;
+        $user->save();
         Toastr::success('Employee Updated successfully :)','Success');
         return view('dashboard.recieves.index');
     }

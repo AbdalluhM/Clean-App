@@ -21,13 +21,13 @@ add employee || for recieve
     <!--begin::Content-->
     <div id="kt_account_profile_details" class="collapse show">
         <!--begin::Form-->
-        <form action="{{route('recieves.emp.store',$recieve->id)}}"  method="post">
+        <form action="{{route('recieves.emp.store',$recieve->id)}}" method="post">
             @csrf
             <!--begin::Card body-->
             <div class="card-body border-top p-9">
                 <!--begin::Input group-->
                 <div class="row mb-6">
-                    @if (isset($users))
+                    @if ($users->count()>0)
                     <div class="row mb-6">
                         <select name="employee_id" aria-label="Select a Main Category" data-control="select2"
                             data-placeholder="Select employee"
@@ -41,8 +41,30 @@ add employee || for recieve
                         </select>
                         <!--end::Input-->
                     </div>
+
                     @endif
                     <!--end::Input group-->
+                    <div class="row mb-6">
+                        <div class="col-md-6 fv-row">
+                            <div class="d-flex flex-stack mb-8">
+                                <!--begin::Label-->
+                                <div class="me-5">
+                                    <label class="fs-6 fw-bold">Make This Recieve Completed</label>
+                                    <div class="fs-7 fw-bold text-gray-400">this recieve will be completed
+                                    </div>
+                                </div>
+                                <!--end::Label-->
+                                <!--begin::Switch-->
+                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                    <input type="hidden" name="status" value="0" />
+                                    <input class="form-check-input" type="checkbox" value="1" checked="checked"
+                                        name="status">
+                                    <span class="form-check-label fw-bold text-gray-400">Completed</span>
+                                </label>
+                                <!--end::Switch-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--end::Card body-->
                 <!--begin::Actions-->

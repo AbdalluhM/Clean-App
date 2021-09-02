@@ -20,6 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('image')->nullable();
             $table->string('phone')->nullable();
             $table->boolean('is_admin')->nullable();
+            $table->integer('worked')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

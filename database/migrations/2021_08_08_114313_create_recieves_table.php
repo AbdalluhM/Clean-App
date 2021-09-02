@@ -20,7 +20,7 @@ class CreateRecievesTable extends Migration
             // $table->string('title');
             $table->string('address');
             $table->string('time_start');
-            // $table->string('desc');
+            $table->enum('status',[0,1]);
             $table->timestamps();
         });
     }

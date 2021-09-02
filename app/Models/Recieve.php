@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Recieve extends Model
 {
     use HasFactory;
-    protected $fillable=['user_id','employee_id','address','time_start'];
+    protected $fillable=['user_id','employee_id','address','time_start','status'];
     public function employee()
     {
         return $this->belongsTo(Admin::class);
