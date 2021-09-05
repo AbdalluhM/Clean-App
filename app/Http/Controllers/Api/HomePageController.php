@@ -15,7 +15,8 @@ class HomePageController extends Controller
     use GeneralTrait;
     public function slider()
     {
-        $slider = Slider::all();
+        $slider = Slider::paginate(1);
+        // $slider=SliderResource::collection($slider);
         return $this->returnData('sliders', SliderResource::collection($slider), "done");
     }
     public function categories()
@@ -32,7 +33,7 @@ class HomePageController extends Controller
 
     public function service()
     {
-        $service = SupCategory::where("category_id", 2)->paginate(4);
+        $service = SupCategory::paginate(4);
         return $this->returnData('service', $service, "done");
     }
 }
