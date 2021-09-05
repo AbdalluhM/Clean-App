@@ -19,7 +19,7 @@ class RecieveResource extends JsonResource
             'address' => $this->address,
             'date'=>$this->created_at,
             'Employee' => $this->employee_details(),
-            'details' => $this->details(),
+            'details' => RecieveDetailsResource::collection($this->details),
             'status'=>$this->status(),
         ];
     }
