@@ -48,6 +48,5 @@ class RecieveResource extends JsonResource
             return $employee;
         }
 
-        return "no employee yet";
     }
 }
