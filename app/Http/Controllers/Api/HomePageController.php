@@ -15,7 +15,7 @@ class HomePageController extends Controller
     use GeneralTrait;
     public function slider()
     {
-        $slider = Slider::paginate(1);
+        $slider = Slider::all();
         return $this->returnData('sliders', SliderResource::collection($slider), "done");
     }
     public function categories()

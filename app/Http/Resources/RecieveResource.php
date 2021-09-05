@@ -48,5 +48,6 @@ class RecieveResource extends JsonResource
             return $employee;
         }
 
+        // return (object) [];
     }
 }
