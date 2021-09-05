@@ -41,6 +41,7 @@ class RecieveResource extends JsonResource
             $employee = [];
             $employee['name'] = $this->employee->name;
             $employee['worked']=$this->employee->worked;
+            $employee['phone']=$this->employee->phone;
             if ($this->employee->admin_image_path) {
                 $employee['image'] = $this->employee->admin_image_path;
             }
