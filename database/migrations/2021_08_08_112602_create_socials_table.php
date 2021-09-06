@@ -18,7 +18,7 @@ class CreateSocialsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')->on('users');
-            $table->integer('social_id');
+            $table->string('social_id');
             $table->string('name');
             $table->string('email');
             $table->string('type_social');

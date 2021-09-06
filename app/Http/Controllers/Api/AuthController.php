@@ -89,6 +89,14 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if (!$user) {
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string',
+                    'email' => 'email|unique:users',
+                ]);
+        
+                if ($validator->fails()) {
+                    return $this->returnError(422, $validator->errors());
+                }
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -99,6 +107,16 @@ class AuthController extends Controller
                 ->where('type_social', $request->type_social)
                 ->first();
             if (!$userSocial) {
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string',
+                    'email' => 'email|unique:socials',
+                    'social_id' => 'required',
+                    'type_social' => 'required',
+                ]);
+        
+                if ($validator->fails()) {
+                    return $this->returnError(422, $validator->errors());
+                }
                 Social::create([
                     'name' => $request->name,
                     'email' => $request->email,
