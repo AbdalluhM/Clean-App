@@ -29,7 +29,7 @@ class SocialRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|string',
             'type_social' => 'required|string',
-            'social_id' => 'required|integer',
+            'social_id' => 'required|string',
         ];
     }
     protected function failedValidation(Validator $validator)

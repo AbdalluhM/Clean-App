@@ -89,14 +89,6 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if (!$user) {
-                $validator = Validator::make($request->all(), [
-                    'name' => 'required|string',
-                    'email' => 'email|unique:users',
-                ]);
-        
-                if ($validator->fails()) {
-                    return $this->returnError(422, $validator->errors());
-                }
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -107,27 +99,17 @@ class AuthController extends Controller
                 ->where('type_social', $request->type_social)
                 ->first();
             if (!$userSocial) {
-                $validator = Validator::make($request->all(), [
-                    'name' => 'required|string',
-                    'email' => 'email|unique:socials',
-                    'social_id' => 'required',
-                    'type_social' => 'required|string',
-                ]);
-        
-                if ($validator->fails()) {
-                    return $this->returnError(422, $validator->errors());
-                }
                 Social::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'user_id' => $user->id,
                     'social_id' => $request->social_id,
                     'type_social' => $request->type_social,
-                    // 'phone'=>$request->phone,
                 ]);
+                // dd("s");
             }
             $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
-            $success['name'] =  $userSocial['name'];
+            $success['name'] =  $user['name'];
             return $this->returnData("access_token", $success, 'User Signed in');
         } catch (\Throwable $th) {
             return $this->returnError(400, ['Server Error' => $th->getMessage()]);
