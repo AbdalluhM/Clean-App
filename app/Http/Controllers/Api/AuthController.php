@@ -111,7 +111,7 @@ class AuthController extends Controller
                     'name' => 'required|string',
                     'email' => 'email|unique:socials',
                     'social_id' => 'required',
-                    'type_social' => 'required',
+                    'type_social' => 'required|string',
                 ]);
         
                 if ($validator->fails()) {
