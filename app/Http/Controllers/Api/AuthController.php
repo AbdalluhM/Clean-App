@@ -109,7 +109,7 @@ class AuthController extends Controller
                 ]);
             }
             $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
-            $success['name'] =  $userSocial->name;
+            $success['name'] =  $userSocial['name'];
             return $this->returnData("access_token", $success, 'User Signed in');
         } catch (\Throwable $th) {
             return $this->returnError(400, ['Server Error' => $th->getMessage()]);
