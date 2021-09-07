@@ -99,7 +99,7 @@ class AuthController extends Controller
                 ->where('type_social', $request->type_social)
                 ->first();
             if (!$userSocial) {
-                Social::create([
+                $userSocial=Social::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'user_id' => $user->id,
@@ -109,7 +109,8 @@ class AuthController extends Controller
                 // dd("s");
             }
             $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
-            $success['name'] =  $user['name'];
+            $success['name'] =  $userSocial['name'];
+            $success['phone']=$userSocial['phone'];
             return $this->returnData("access_token", $success, 'User Signed in');
         } catch (\Throwable $th) {
             return $this->returnError(400, ['Server Error' => $th->getMessage()]);
