@@ -128,6 +128,7 @@ class AuthController extends Controller
         if ($req->fails()) {
             return $this->returnError(422, $req->errors());
         }
+        return "hhhhhh";
         $social->update([
             'phone'=>$request->phone,
         ]);
