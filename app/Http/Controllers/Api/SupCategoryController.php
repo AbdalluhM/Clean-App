@@ -47,4 +47,16 @@ class SupCategoryController extends Controller
             return $this->returnError(500, $th->getMessage());
         }
     }
+    public function search(Request $request){
+
+        $req = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+        if ($req->fails()) {
+            return $this->returnError(422, $req->errors());
+        }
+        $data=$request->get('name');
+        $services=SupCategory::where('name_ar','LIKE',"%{$data}%")->orWhere('name_en','LIKE',"%{$data}%")->get();
+      return $this->returnData('services',$services,'done');
+    }
 }

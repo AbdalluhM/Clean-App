@@ -42,6 +42,8 @@ Route::get('category', [CategoryController::class, 'index']);
 // sup category
 Route::get('supcategory', [SupCategoryController::class, 'index']);
 Route::get('supcategory/details', [SupCategoryController::class, 'sup_category']);
+Route::get('supcategory/search', [SupCategoryController::class, 'search']);
+
 
 
 // slider
