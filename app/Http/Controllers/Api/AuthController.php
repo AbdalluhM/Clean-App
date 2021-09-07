@@ -116,6 +116,24 @@ class AuthController extends Controller
         }
     }
 
+
+    // update social phone
+    public function update_social_phone(Request $request){
+        $user=Auth::user();
+        $social=Social::where('user_id',$user->id)->first();
+        $req = Validator::make($request->all(), [
+            'phone' => 'required',
+        ]);
+        if ($req->fails()) {
+            return $this->returnError(422, $req->errors());
+        }
+        $social->update([
+            'phone'=>$request->phone,
+        ]);
+        return $this->returnSuccessMessage("phone updated success",200);
+        
+    }
+
     /// log out
     public function signout()
     {

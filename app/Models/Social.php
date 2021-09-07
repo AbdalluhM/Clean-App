@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Social extends Model
 {
     use HasFactory;
-    protected $fillable=['name','email','type_social','social_id','user_id'];
+    protected $fillable=['name','email','type_social','social_id','user_id','phone'];
     public function user(){
         return $this->belongsTo(User::class);
     }

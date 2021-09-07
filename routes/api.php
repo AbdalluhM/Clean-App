@@ -29,6 +29,7 @@ Route::post('auth/signin', [AuthController::class, 'signin']);
 Route::post('auth/signup', [AuthController::class, 'signup']);
 Route::post('auth/signin/social', [AuthController::class, 'loginSocial']);
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('update/social/phone',[AuthController::class,'update_social_phone']);
     Route::post('auth/signout', [AuthController::class, 'signout']);
     Route::post('auth/change-password', [AuthController::class, 'change_password']);
 });

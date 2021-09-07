@@ -21,6 +21,7 @@ class CreateSocialsTable extends Migration
             $table->string('social_id');
             $table->string('name');
             $table->string('email');
+            $table->string('phone')->unique()->nullable();
             $table->string('type_social');
             $table->timestamps();
         });
