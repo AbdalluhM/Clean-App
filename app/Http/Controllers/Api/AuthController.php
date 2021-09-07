@@ -122,7 +122,7 @@ class AuthController extends Controller
         $user=Auth::user();
         $social=Social::where('user_id',$user->id)->first();
         $req = Validator::make($request->all(), [
-            'phone' => 'required',
+            'phone' => 'required|unique:socials,phone',
         ]);
         if ($req->fails()) {
             return $this->returnError(422, $req->errors());
@@ -131,7 +131,7 @@ class AuthController extends Controller
             'phone'=>$request->phone,
         ]);
         return $this->returnSuccessMessage("phone updated success",200);
-        
+
     }
 
     /// log out
