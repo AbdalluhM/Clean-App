@@ -36,9 +36,9 @@ class RecieveRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
 
-        $errors = collect($validator->errors())->map(function ($error) {
-            return $error[0];
-        });
+        // $errors = collect($validator->errors())->map(function ($error) {
+        //     return $error[0];
+        // });
         throw new HttpResponseException(response()->json([
             'status' => 'false',
             'errNum' => 422,

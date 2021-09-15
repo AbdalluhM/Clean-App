@@ -25,9 +25,9 @@ class AuthController extends Controller
             'password' => 'required|string|min:5',
         ]);
         if ($req->fails()) {
-            $errors = collect($req->errors())->map(function ($error) {
-                return $error[0];
-            });
+            // $errors = collect($req->errors())->map(function ($error) {
+            //     return $error[0];
+            // });
 
             // return $this->returnError(422, array_values($errors->toArray()));
             return response()->json([
@@ -143,7 +143,7 @@ class AuthController extends Controller
             'phone' => 'required|unique:socials,phone',
         ]);
         if ($req->fails()) {
-            return $this->returnError(422, $req->errors());
+            return $this->returnError(422, implode(',',$req->messages()->all()));
         }
         $data = $request->get('phone');
         $social->update([
