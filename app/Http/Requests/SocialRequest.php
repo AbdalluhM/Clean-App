@@ -41,7 +41,7 @@ class SocialRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'status' => 'false',
             'errNum' => 422,
-            'errors' => array_values($errors->toArray()),
+            'errors' => implode(',',$validator->messages()->all()),
         ], 422));
     }
 }
