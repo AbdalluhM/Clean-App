@@ -73,7 +73,11 @@ class AuthController extends Controller
             $errors = collect($validator->errors())->map(function ($error) {
                 return $error[0];
             });
-            return $this->returnError(422, array_values($errors->toArray()));
+            return response()->json([
+                'status' => 'false',
+                'errNum' => 422,
+                'errors' => array_values($errors->toArray()),
+            ], 422);
         }
 
         $input = $request->all();
