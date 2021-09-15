@@ -25,7 +25,11 @@ class AuthController extends Controller
             'password' => 'required|string|min:5',
         ]);
         if ($req->fails()) {
-            return $this->returnError(422, $req->errors());
+            $errors = collect($req->errors())->map(function ($error) {
+                return $error[0];
+            });
+
+            return $this->returnError(422, array_values($errors->toArray()));
         }
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             $authUser = Auth::user();
@@ -53,7 +57,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'email|unique:users',
+            // 'email' => 'email|unique:users',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
             'phone' => 'required|string|unique:users',
@@ -65,7 +69,6 @@ class AuthController extends Controller
                 return $error[0];
             });
 
-                    // dd(array_values());
             return $this->returnError(422, array_values($errors->toArray()));
         }
 
