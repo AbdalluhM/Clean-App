@@ -29,7 +29,12 @@ class AuthController extends Controller
                 return $error[0];
             });
 
-            return $this->returnError(422, array_values($errors->toArray()));
+            // return $this->returnError(422, array_values($errors->toArray()));
+            return response()->json([
+                'status' => 'false',
+                'errNum' => 422,
+                'errors' => array_values($errors->toArray()),
+            ], 422);
         }
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             $authUser = Auth::user();
@@ -105,7 +110,7 @@ class AuthController extends Controller
                 ->where('type_social', $request->type_social)
                 ->first();
             if (!$userSocial) {
-                $userSocial=Social::create([
+                $userSocial = Social::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'user_id' => $user->id,
@@ -116,7 +121,7 @@ class AuthController extends Controller
             }
             $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
             $success['name'] =  $userSocial['name'];
-            $success['phone']=$userSocial['phone'];
+            $success['phone'] = $userSocial['phone'];
             return $this->returnData("access_token", $success, 'User Signed in');
         } catch (\Throwable $th) {
             return $this->returnError(400, ['Server Error' => $th->getMessage()]);
@@ -125,21 +130,21 @@ class AuthController extends Controller
 
 
     // update social phone
-    public function update_social_phone(Request $request){
-        $user=Auth::user();
-        $social=Social::where('user_id',$user->id)->first();
+    public function update_social_phone(Request $request)
+    {
+        $user = Auth::user();
+        $social = Social::where('user_id', $user->id)->first();
         $req = Validator::make($request->all(), [
             'phone' => 'required|unique:socials,phone',
         ]);
         if ($req->fails()) {
             return $this->returnError(422, $req->errors());
         }
-        $data=$request->get('phone');
+        $data = $request->get('phone');
         $social->update([
-            'phone'=>$data,
+            'phone' => $data,
         ]);
-        return $this->returnSuccessMessage("phone updated success",200);
-
+        return $this->returnSuccessMessage("phone updated success", 200);
     }
 
     /// log out
