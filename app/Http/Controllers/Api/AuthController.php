@@ -47,7 +47,7 @@ class AuthController extends Controller
         // }
         else {
             // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
-            return $this->returnError(400, ['error' => 'Unauthorised']);
+            return $this->returnError(400, " Unauthorised");
         }
     }
 
