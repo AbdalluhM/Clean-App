@@ -60,9 +60,13 @@ class AuthController extends Controller
             'image' => 'image',
             'fcm_token' => 'required'
         ]);
-
         if ($validator->fails()) {
-            return $this->returnError(422, $validator->errors());
+            $errors = collect($validator->errors())->map(function ($error) {
+                return $error[0];
+            });
+
+                    // dd(array_values());
+            return $this->returnError(422, array_values($errors->toArray()));
         }
 
         $input = $request->all();

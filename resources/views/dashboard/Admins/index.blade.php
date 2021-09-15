@@ -103,12 +103,14 @@ Home | all - users
                                 @endif
                             </td>
                             <td class="d-flex">
-
+                                <a href="{{route('users.edit',$user->id)}}" class="btn btn-light">
+                                   Edit
+                                </a>
                                 <form action="{{route('users.destroy',$user->id)}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button href="#" type="submit"
-                                        class="btn btn-light">
+                                        class="btn btn-light" style="margin-left: 20px">
                                         <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                         DELETE
                                         <!--end::Svg Icon-->

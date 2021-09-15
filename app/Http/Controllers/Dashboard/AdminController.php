@@ -11,9 +11,9 @@ use Spatie\Permission\Models\Role;
 use App\Http\Requests\AdminRequest;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -22,6 +22,15 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:user-create', ['only' => ['create','store']]);
+        //  $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $data = Admin::orderBy('id', 'DESC')->paginate(4);
@@ -84,9 +93,10 @@ class AdminController extends Controller
     {
         $user = Admin::find($id);
         $roles = Role::all();
+        $nRoles = Auth::user()->getRoleNames()->toArray();
         $userRoles = $user->roles->pluck('name', 'name')->all();
 
-        return view('dashboard.Admins.edit', compact('user', 'roles', 'userRoles'));
+        return view('dashboard.Admins.edit', compact('user', 'roles', 'userRoles','nRoles'));
     }
 
     /**
@@ -96,9 +106,14 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminRequest $request, $id)
+    public function update(Request $request, $id)
     {
-
+        $input = $request->validate([
+            'name' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:users',
+            'phone' => 'required|string|between:2,100',
+            'password' => 'required|same:confirm-password|min:6',
+        ]);
         $input = $request->all();
         $Admin = Admin::find($id);
         if (request()->hasFile('image')) {

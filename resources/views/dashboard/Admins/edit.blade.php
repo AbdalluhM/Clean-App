@@ -90,27 +90,29 @@
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             <input type="text" name="name" value="{{$user->name}}"
-                                class="form-control form-control-lg form-control-solid @error('name') is-invalid @enderror" placeholder="User Name">
-                                @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                           <div class="fv-plugins-message-container invalid-feedback"></div>
+                                class="form-control form-control-lg form-control-solid @error('name') is-invalid @enderror"
+                                placeholder="User Name">
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Col-->
                     </div>
                     <!--end::Input group-->
-                     <!--begin::Input group-->
-                     <div class="row mb-6">
+                    <!--begin::Input group-->
+                    <div class="row mb-6">
                         <!--begin::Label-->
                         <label class="col-lg-4 col-form-label required fw-bold fs-6">Email</label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             <input type="email" name="email" value="{{$user->email}}"
-                                class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror " placeholder="Email">
-                                @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror "
+                                placeholder="Email">
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Col-->
@@ -124,10 +126,11 @@
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             <input type="phone" name="phone" value="{{$user->phone}}"
-                                class="form-control form-control-lg form-control-solid  @error('phone') is-invalid @enderror" placeholder="Phone">
-                                @error('phone')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                class="form-control form-control-lg form-control-solid  @error('phone') is-invalid @enderror"
+                                placeholder="Phone">
+                            @error('phone')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Col-->
@@ -141,10 +144,11 @@
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             <input type="password" name="password"
-                                class="form-control form-control-lg form-control-solid  @error('password') is-invalid @enderror" placeholder="password">
-                                @error('password')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                class="form-control form-control-lg form-control-solid  @error('password') is-invalid @enderror"
+                                placeholder="password">
+                            @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Col-->
@@ -158,10 +162,11 @@
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row fv-plugins-icon-container">
                             <input type="password" name="confirm-password"
-                                class="form-control form-control-lg form-control-solid  @error('confirm-password') is-invalid @enderror" placeholder="confirm-password">
-                                @error('confirm-password')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                class="form-control form-control-lg form-control-solid  @error('confirm-password') is-invalid @enderror"
+                                placeholder="confirm-password">
+                            @error('confirm-password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Col-->
@@ -169,18 +174,19 @@
                     <!--end::Input group-->
 
                     <!--begin::Input group-->
+                    @if (in_array('Admin',$nRoles))
                     <div class="row mb-6">
-                        <select name="roles[]" aria-label="Select a Main Category" data-control="select2"
-                            data-placeholder="Select a Main Category"
+                        <select name="roles[]" aria-label="Select a role" data-control="select2"
+                            data-placeholder="Select a role"
                             class="form-select form-select-solid form-select-lg select2-hidden-accessible @error('roles') is-invalid @enderror"
                             data-select2-id="select2-data-13-i3r9" tabindex="-1" aria-hidden="true" multiple>
                             <option value="" data-select2-id="select2-data-15-ojrf">Select Role</option>
                             @foreach ($roles as $role )
-                            <option data-kt-flag="flags/indonesia.svg" value="{{$role->id}}"
-                            @if ($user->hasRole($role->id))
-                            selected
-                            @endif>
-                            {{$role->name}}</option>
+                            <option data-kt-flag="flags/indonesia.svg" value="{{$role->id}}" @if ($user->
+                                hasRole($role->id))
+                                selected
+                                @endif>
+                                {{$role->name}}</option>
                             @endforeach
                         </select>
                         @error('roles')
@@ -188,6 +194,7 @@
                         @enderror
                         <!--end::Input-->
                     </div>
+                    @endif
                     <!--end::Input group-->
                 </div>
                 <!--end::Card body-->
