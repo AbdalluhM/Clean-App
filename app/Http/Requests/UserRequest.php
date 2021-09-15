@@ -38,10 +38,13 @@ class UserRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
 
+        $errors = collect($validator->errors())->map(function ($error) {
+            return $error[0];
+        });
         throw new HttpResponseException(response()->json([
             'status' => 'false',
-            'errnum' => 422,
-            'errors' => $validator->errors(),
+            'errNum' => 422,
+            'errors' => array_values($errors->toArray()),
         ], 422));
     }
 }
