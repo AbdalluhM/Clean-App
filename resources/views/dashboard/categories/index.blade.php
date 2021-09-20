@@ -109,6 +109,7 @@ Home | all-categories
                                 </a>
                                 <form action="{{route('categories.destroy',$category->id)}}" method="post" >
                                     @csrf
+                                    @method('delete')
                                     <button href="#" type="submit" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                         <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                         <span class="svg-icon svg-icon-3">
@@ -158,5 +159,10 @@ Home | all-categories
         <!--begin::Body-->
     </div>
     <!--end::Tables Widget 9-->
+
+        </div>
+    </div>
 </div>
+
+
 @endsection
