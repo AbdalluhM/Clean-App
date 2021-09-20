@@ -52,7 +52,11 @@ class AuthController extends Controller
         // }
         else {
             // return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
-            return $this->returnError(400, " you must register first");
+            return response()->json([
+                'status' => 'false',
+                'errNum' => 422,
+                'errors' =>"you must register first",
+            ], 422);
         }
     }
 
