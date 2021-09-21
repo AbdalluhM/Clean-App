@@ -142,7 +142,7 @@ class AuthController extends Controller
         $user = Auth::user();
         $user = User::where('id', $user->id)->first();
         $req = Validator::make($request->all(), [
-            'phone' => 'required|unique:socials,phone',
+            'phone' => 'required|unique:users,phone',
         ]);
         if ($req->fails()) {
             return $this->returnError(422, implode(',',$req->messages()->all()));
