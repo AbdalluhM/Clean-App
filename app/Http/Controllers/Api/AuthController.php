@@ -120,8 +120,6 @@ class AuthController extends Controller
                 ->first();
             if (!$userSocial) {
                 $userSocial = Social::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
                     'user_id' => $user->id,
                     'social_id' => $request->social_id,
                     'type_social' => $request->type_social,
@@ -129,8 +127,8 @@ class AuthController extends Controller
                 // dd("s");
             }
             $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
-            $success['name'] =  $userSocial['name'];
-            $success['phone'] = $userSocial['phone'];
+            $success['name'] =  $user['name'];
+            $success['phone'] = $user['phone'];
             return $this->returnData("access_token", $success, 'User Signed in');
         } catch (\Throwable $th) {
             return $this->returnError(400, ['Server Error' => $th->getMessage()]);
@@ -142,7 +140,7 @@ class AuthController extends Controller
     public function update_social_phone(Request $request)
     {
         $user = Auth::user();
-        $social = Social::where('user_id', $user->id)->first();
+        $user = User::where('id', $user->id)->first();
         $req = Validator::make($request->all(), [
             'phone' => 'required|unique:socials,phone',
         ]);
@@ -150,7 +148,7 @@ class AuthController extends Controller
             return $this->returnError(422, implode(',',$req->messages()->all()));
         }
         $data = $request->get('phone');
-        $social->update([
+        $user->update([
             'phone' => $data,
         ]);
         return $this->returnSuccessMessage("phone updated success", 200);
